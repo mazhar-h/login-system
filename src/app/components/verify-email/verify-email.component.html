@@ -1,0 +1,20 @@
+<div class="verification-container">
+    <h2>Email Verification</h2>
+  
+    <!-- Show success or failure message -->
+    <div *ngIf="verificationStatus" class="verification-status">
+      <p>{{ verificationStatus }}</p>
+    </div>
+  
+    <!-- If there is an error, show the error message and a button to resend the verification link -->
+    <div *ngIf="errorMessage">
+      <p>{{ errorMessage }}</p>
+      <button (click)="resendVerificationEmail()" class="btn btn-primary">Resend Verification Link</button>
+    </div>
+  
+    <!-- Success message after the verification -->
+    <div *ngIf="verificationStatus && !errorMessage">
+      <p>Your account is now verified! You can <a [routerLink]="['/login']">login</a> now.</p>
+    </div>
+  </div>
+  

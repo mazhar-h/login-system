@@ -1,0 +1,8 @@
+.weather-dashboard {
+    text-align: center;
+    margin: 20px;
+  }
+  
+  .error-message {
+    color: red;
+  }

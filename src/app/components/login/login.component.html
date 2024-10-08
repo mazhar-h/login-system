@@ -1,0 +1,90 @@
+<!-- login.component.html -->
+
+<div class="login-container">
+  <h2>Login</h2>
+
+  <!-- Display error message if login fails -->
+  <div *ngIf="errorMessage" class="error-message">
+    {{ errorMessage }}
+  </div>
+
+  <form (ngSubmit)="onLogin()" [formGroup]="loginForm">
+    <!-- Username Field -->
+    <div class="form-group">
+      <label for="username">Username</label>
+      <input
+        type="text"
+        id="username"
+        formControlName="username"
+        class="form-control"
+        placeholder="Enter your username"
+        required
+      />
+      <div
+        *ngIf="
+          loginForm.get('username')?.invalid &&
+          loginForm.get('username')?.touched
+        "
+        class="error"
+      >
+        Username is required.
+      </div>
+    </div>
+
+    <!-- Password Field -->
+    <div class="form-group">
+      <label for="password">Password</label>
+      <input
+        type="password"
+        id="password"
+        formControlName="password"
+        class="form-control"
+        placeholder="Enter your password"
+        required
+      />
+      <div
+        *ngIf="
+          loginForm.get('password')?.invalid &&
+          loginForm.get('password')?.touched
+        "
+        class="error"
+      >
+        Password is required.
+      </div>
+    </div>
+
+    <!-- Submit Button -->
+    <div class="form-group">
+      <button
+        type="submit"
+        [disabled]="loginForm.invalid"
+        class="btn btn-primary"
+      >
+        Login
+      </button>
+    </div>
+  </form>
+
+  <!-- Register and Forgot Password Links -->
+  <div class="links">
+    <a routerLink="/register">Don't have an account? Register</a>
+    <a routerLink="/forgot-username">Forgot your username?</a>
+    <a routerLink="/forgot-password">Forgot your password?</a>
+  </div>
+
+  <!-- Error message block -->
+  <div *ngIf="errorMessage" class="error-message">
+    {{ errorMessage }}
+  </div>
+
+  <!-- Show resend verification button if user is disabled -->
+  <div *ngIf="userDisabled">
+    <p>
+      Your account is not verified.
+      <button type="button" (click)="resendVerification()" class="btn btn-link">
+        Resend verification link
+      </button>
+    </p>
+  </div>
+  
+</div>

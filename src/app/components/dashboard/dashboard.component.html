@@ -1,0 +1,160 @@
+<div class="dashboard-container">
+  <h2>Welcome to Your Dashboard</h2>
+  <p>{{ message }}</p>
+  <!-- Display the message here -->
+
+  <button (click)="logout()" class="btn btn-danger">Logout</button>
+  <div class="weather-dashboard">
+    <div *ngIf="weatherData">
+      <h3>{{ weatherData.name }}</h3>
+      <p>Temperature: {{ weatherData.main.temp }}°F</p>
+      <p>Weather: {{ weatherData.weather[0].description }}</p>
+      <p>Humidity: {{ weatherData.main.humidity }}%</p>
+      <p>Wind Speed: {{ weatherData.wind.speed }} mph</p>
+    </div>
+
+    <div *ngIf="errorMessage" class="error-message">
+      {{ errorMessage }}
+    </div>
+  </div>
+
+  <!-- Form to create a new user -->
+  <div *ngIf="isAdmin">
+    <h3>Create New User</h3>
+    <form (ngSubmit)="createUser()">
+      <div class="form-group">
+        <label for="username">Username:</label>
+        <input
+          type="text"
+          id="username"
+          [(ngModel)]="newUser.username"
+          name="username"
+          required
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email:</label>
+        <input
+          type="email"
+          id="email"
+          [(ngModel)]="newUser.email"
+          name="email"
+          required
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="role">Role:</label>
+        <input
+          type="text"
+          id="role"
+          [(ngModel)]="newUser.role"
+          name="role"
+          required
+        />
+      </div>
+
+      <button type="submit">Create User</button>
+    </form>
+  </div>
+
+  <!-- Form to update a user -->
+  <div *ngIf="isAdmin">
+    <h3>Update User</h3>
+    <form (ngSubmit)="updateUser()">
+      <div class="form-group">
+        <label for="currentUsername">Current Username:</label>
+        <input
+          type="text"
+          id="currentUsername"
+          [(ngModel)]="updateUserModel.currentUsername"
+          name="currentUsername"
+          required
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="newUsername">New Username:</label>
+        <input
+          type="text"
+          id="newUsername"
+          [(ngModel)]="updateUserModel.newUsername"
+          name="newUsername"
+          required
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="newEmail">New Email:</label>
+        <input
+          type="email"
+          id="newEmail"
+          [(ngModel)]="updateUserModel.newEmail"
+          name="newEmail"
+          required
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="newRole">New Role:</label>
+        <input
+          type="text"
+          id="newRole"
+          [(ngModel)]="updateUserModel.newRole"
+          name="newRole"
+          required
+        />
+      </div>
+
+      <button type="submit">Update User</button>
+    </form>
+  </div>
+
+  <!-- Delete User Section -->
+  <div *ngIf="isAdmin">
+    <div>
+      <h3>Delete a User</h3>
+      <form (ngSubmit)="onDeleteUser()">
+        <div>
+          <label for="username">Username:</label>
+          <input
+            type="text"
+            [(ngModel)]="deleteUsername"
+            name="username"
+            required
+          />
+        </div>
+        <button type="submit">Delete User</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Button to toggle the users table -->
+  <div *ngIf="isAdmin">
+    <div>
+      <button (click)="toggleUsers()">
+        {{ isTableVisible ? "Hide Users" : "Show Users" }}
+      </button>
+
+      <!-- Display users in a table if visible -->
+      <table *ngIf="isTableVisible && users.length > 0">
+        <thead>
+          <tr>
+            <th>Username</th>
+            <th>Email</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let user of users">
+            <td>{{ user.username }}</td>
+            <td>{{ user.email }}</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- Display a message if no users are loaded -->
+      <p *ngIf="isTableVisible && users.length === 0">No users to display.</p>
+    </div>
+  </div>
+</div>
