@@ -27,6 +27,13 @@ export class LoginComponent implements OnInit {
       username: ['', Validators.required],
       password: ['', Validators.required],
     });
+    this.redirectDashboard();
+  }
+
+  redirectDashboard(): void {
+    let token = localStorage.getItem('token');
+    if (token)
+      this.router.navigate(['/dashboard']);
   }
 
   onLogin(): void {
