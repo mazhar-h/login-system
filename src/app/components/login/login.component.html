@@ -6,6 +6,12 @@
   <!-- Display error message if login fails -->
   <div *ngIf="errorMessage" class="error-message">
     {{ errorMessage }}
+    <!-- Show resend verification button if user is disabled -->
+    <div *ngIf="userDisabled">
+      <button type="button" (click)="resendVerification()" class="btn btn-link">
+        Resend verification link
+      </button>
+    </div>
   </div>
 
   <form (ngSubmit)="onLogin()" [formGroup]="loginForm">
@@ -72,20 +78,5 @@
       <li><a routerLink="/forgot-username">Forgot your username?</a></li>
       <li><a routerLink="/forgot-password">Forgot your password?</a></li>
     </ul>
-  </div>
-
-  <!-- Error message block -->
-  <div *ngIf="errorMessage" class="error-message">
-    {{ errorMessage }}
-  </div>
-
-  <!-- Show resend verification button if user is disabled -->
-  <div *ngIf="userDisabled">
-    <p>
-      Your account is not verified.
-      <button type="button" (click)="resendVerification()" class="btn btn-link">
-        Resend verification link
-      </button>
-    </p>
   </div>
 </div>

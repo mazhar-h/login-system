@@ -107,7 +107,7 @@ export class DashboardComponent implements OnInit {
         next: (response) => {
           console.log('User deleted successfully:', response);
           alert('User deleted successfully');
-          this.deleteUsername = ''; // Clear the input field after deletion
+          this.deleteUsername = '';
         },
         error: (error) => {
           console.error('Error deleting user:', error);
