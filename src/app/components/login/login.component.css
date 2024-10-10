@@ -11,13 +11,13 @@
     text-align: center;
     margin-bottom: 20px;
   }
-  
+
   .form-group {
     margin-bottom: 15px;
   }
   
   .form-control {
-    width: 100%;
+    width: 280px;
     padding: 10px;
     margin: 5px 0 10px 0;
     border: 1px solid #ccc;
@@ -62,4 +62,10 @@
   
   .links a:hover {
     text-decoration: underline;
+  }
+
+  ul.no-bullets {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
   }
