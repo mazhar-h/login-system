@@ -19,7 +19,7 @@
   </div>
 
   <!-- Form to create a new user -->
-  <div *ngIf="isAdmin">
+  <div class="create-container" *ngIf="isAdmin">
     <h3>Create New User</h3>
     <form (ngSubmit)="createUser()">
       <div class="form-group">
@@ -60,7 +60,7 @@
   </div>
 
   <!-- Form to update a user -->
-  <div *ngIf="isAdmin">
+  <div class="update-container" *ngIf="isAdmin">
     <h3>Update User</h3>
     <form (ngSubmit)="updateUser()">
       <div class="form-group">
@@ -112,7 +112,7 @@
   </div>
 
   <!-- Delete User Section -->
-  <div *ngIf="isAdmin">
+  <div class="delete-container" *ngIf="isAdmin">
     <div>
       <h3>Delete a User</h3>
       <form (ngSubmit)="onDeleteUser()">
@@ -131,7 +131,7 @@
   </div>
 
   <!-- Button to toggle the users table -->
-  <div *ngIf="isAdmin">
+  <div class="get-container" *ngIf="isAdmin">
     <div>
       <button (click)="toggleUsers()">
         {{ isTableVisible ? "Hide Users" : "Show Users" }}
