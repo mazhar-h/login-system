@@ -1,10 +1,15 @@
 <div *ngIf="showModal" class="modal-overlay">
   <div class="modal-container">
-    <div *ngIf="usernameCreatedError" class="usernameCreatedError form-group">
+    <div *ngIf="googleUsernameCreatedError || facebookUsernameCreatedError" class="usernameCreatedError form-group">
       Error creating username!
     </div>
     <h2>Add username</h2>
-    <div class="form-group">Create a username for your Google login.</div>
+    <div *ngIf="socialType === 'google'">
+      <div class="form-group">Create a username for your Google login.</div>
+    </div>
+    <div *ngIf="socialType === 'facebook'">
+      <div class="form-group">Create a username for your Facebook login.</div>
+    </div>
     <div class="form-group">
       <input
         class="form-control"
@@ -14,7 +19,12 @@
       />
     </div>
     <div class="form-group">
-      <button class="btn" (click)="submitUsername()">Submit</button>
+      <div *ngIf="socialType === 'google'">
+      <button class="btn" (click)="submitGoogleUsername()">Submit</button>
+      </div>
+      <div *ngIf="socialType === 'facebook'">
+        <button class="btn" (click)="submitFacebookUsername()">Submit</button>
+        </div>
     </div>
   </div>
 </div>

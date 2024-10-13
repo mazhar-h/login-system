@@ -8,13 +8,22 @@ import { Component, EventEmitter, input, Input, Output } from '@angular/core';
 export class UsernameModalComponent {
   username: string  = '';
   showModal: boolean = true;
-  @Input() usernameCreatedError: boolean = false;
+  @Input() googleUsernameCreatedError: boolean = false;
+  @Input() facebookUsernameCreatedError: boolean = false;
+  @Input() socialType = '';
 
-  @Output() usernameCreated = new EventEmitter<string>();
+  @Output() googleUsernameCreated = new EventEmitter<string>();
+  @Output() facebookUsernameCreated = new EventEmitter<string>();
 
-  submitUsername() {
+  submitGoogleUsername() {
     if (this.username) {
-      this.usernameCreated.emit(this.username);
+      this.googleUsernameCreated.emit(this.username);
+    }
+  }
+
+  submitFacebookUsername() {
+    if (this.username) {
+      this.facebookUsernameCreated.emit(this.username);
     }
   }
 }

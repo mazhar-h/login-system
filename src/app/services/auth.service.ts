@@ -20,7 +20,7 @@ export class AuthService {
     return this.http.post(`${this.baseUrl}/auth/google/register`, googleAuthRequest , {  headers: { Authorization: 'Bearer ' + idToken }, withCredentials: true })
   }
 
-  getExistingUser(idToken: string): Observable<any> {
+  getGoogleExistingUser(idToken: string): Observable<any> {
     return this.http.get(`${this.baseUrl}/auth/google/user`, { headers: { Authorization: 'Bearer ' + idToken } })
   }
 
@@ -28,6 +28,22 @@ export class AuthService {
     return this.http.post(`${this.baseUrl}/auth/google/link`, googleLinkRequest, {  headers: { Authorization: 'Bearer ' + idToken }, withCredentials: true })
   }
   
+  loginWithFacebook(facebookToken: string): Observable<any> {
+    return this.http.post(`${this.baseUrl}/auth/facebook`, facebookToken, { withCredentials: true })
+  }
+
+  registerWithFacebook(idToken: string, facebookAuthRequest: { username: string }): Observable<any> {
+    return this.http.post(`${this.baseUrl}/auth/facebook/register`, facebookAuthRequest , {  headers: { Authorization: 'Bearer ' + idToken }, withCredentials: true })
+  }
+
+  getFacebookExistingUser(idToken: string): Observable<any> {
+    return this.http.get(`${this.baseUrl}/auth/facebook/user`, { headers: { Authorization: 'Bearer ' + idToken } })
+  }
+
+  linkFacebookAccount(idToken: string, facebookLinkRequest: {password: string}): Observable<any> {
+    return this.http.post(`${this.baseUrl}/auth/facebook/link`, facebookLinkRequest, {  headers: { Authorization: 'Bearer ' + idToken }, withCredentials: true })
+  }
+
   login(username: string, password: string): Observable<any> {
     return this.http.post(`${this.baseUrl}/login`, { username, password }, { withCredentials: true });
   }

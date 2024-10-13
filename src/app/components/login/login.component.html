@@ -1,12 +1,16 @@
 <app-username-modal
-  [usernameCreatedError]="usernameCreatedError"
-  (usernameCreated)="handleUsernameCreated($event)"
+  [googleUsernameCreatedError]="googleUsernameCreatedError"
+  [facebookUsernameCreatedError]="facebookUsernameCreatedError"
+  [socialType]="socialType"
+  (googleUsernameCreated)="handleGoogleUsernameCreated($event)"
+  (facebookUsernameCreated)="handleFacebookUsernameCreated($event)"
   *ngIf="showUsernameModal"
 ></app-username-modal>
 <app-user-link-modal
   [showModal]="showUserLinkModal"
   [username]="existingUsername"
   [idToken]="idToken"
+  [socialType]="socialType"
   (modalClosed)="onModalClosed()"
 ></app-user-link-modal>
 
@@ -84,6 +88,7 @@
   </form>
 
   <div id="buttonDiv"></div>
+  <button (click)="facebookLogin()" class="loginBtn loginBtn--facebook">Sign in with Facebook</button>
 
   <!-- Links -->
   <div class="links">

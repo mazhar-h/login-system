@@ -16,12 +16,12 @@ export class LoginComponent implements OnInit {
   userDisabled: boolean = false;
   username: string = '';
   showUsernameModal: boolean = false;
-  googleId: string = '';
-  email: string = '';
-  usernameCreatedError: boolean = false;
+  googleUsernameCreatedError: boolean = false;
+  facebookUsernameCreatedError: boolean = false;
   idToken: string = '';
   existingUsername: string = '';
   showUserLinkModal: boolean = false;
+  socialType: string = '';
 
   constructor(
     private formBuilder: FormBuilder,
@@ -50,6 +50,21 @@ export class LoginComponent implements OnInit {
       theme: 'outline',
       size: 'large',
     });
+
+    // @ts-ignore
+    window.fbAsyncInit = function() {
+      // @ts-ignore
+      FB.init({
+        appId      : environment.facebookClientId,
+        cookie     : true,
+        xfbml      : true,
+        version    : 'v21.0'
+      });
+      
+      //@ts-ignore
+      FB.AppEvents.logPageView();   
+        
+    };
   }
 
   handleCredentialResponse(response: any) {
@@ -57,8 +72,7 @@ export class LoginComponent implements OnInit {
     this.authService.loginWithGoogle(this.idToken).subscribe({
       next: (resp) => {
         if (!resp.accessToken) {
-          this.googleId = resp.googleId;
-          this.email = resp.email;
+          this.socialType = 'google';
           this.openUsernameModal();
         } else {
           localStorage.setItem('token', resp.accessToken);
@@ -67,11 +81,12 @@ export class LoginComponent implements OnInit {
       },
       error: (err) => {
         if (err.error === 'User already exists') {
-          this.authService.getExistingUser(this.idToken).subscribe({
+          this.authService.getGoogleExistingUser(this.idToken).subscribe({
             next: (resp) => {
               console.log(resp.username);
               this.existingUsername = resp.username;
               this.idToken = response.credential;
+              this.socialType = 'google';
               this.showUserLinkModal = true;
               this.cdr.detectChanges();
             },
@@ -129,7 +144,7 @@ export class LoginComponent implements OnInit {
     this.cdr.detectChanges();
   }
 
-  handleUsernameCreated(username: string) {
+  handleGoogleUsernameCreated(username: string) {
     this.authService
       .registerWithGoogle(this.idToken, {
         username: username,
@@ -141,9 +156,69 @@ export class LoginComponent implements OnInit {
           return;
         },
         error: (err) => {
-          this.usernameCreatedError = true;
+          this.googleUsernameCreatedError = true;
           this.cdr.detectChanges();
         },
       });
+  }
+
+  handleFacebookUsernameCreated(username: string) {
+    this.authService
+      .registerWithFacebook(this.idToken, {
+        username: username,
+      })
+      .subscribe({
+        next: (response) => {
+          localStorage.setItem('token', response.accessToken);
+          this.redirectDashboard();
+          return;
+        },
+        error: (err) => {
+          this.googleUsernameCreatedError = true;
+          this.cdr.detectChanges();
+        },
+      });
+  }
+
+  facebookLogin() {
+    //@ts-ignore
+    FB.login((response) => {
+      console.log(response)
+      if (response.authResponse) {
+        const accessToken = response.authResponse.accessToken;
+        this.sendFacebookTokenToBackend(accessToken);
+      } else {
+        console.log('User cancelled login or did not fully authorize.');
+      }
+    }, {scope: 'email'});
+  }
+  
+  sendFacebookTokenToBackend(token: string) {
+    this.idToken = token;
+    this.authService.loginWithFacebook(token).subscribe({
+      next: response => {
+        if (!response.accessToken) {
+          this.socialType = 'facebook';
+          this.openUsernameModal();
+        } else {
+          localStorage.setItem('token', response.accessToken);
+          this.redirectDashboard();
+        }
+      },
+      error: err => {
+        if (err.error === 'User already exists') {
+          this.authService.getFacebookExistingUser(this.idToken).subscribe({
+            next: (response) => {
+              console.log(response.username);
+              this.existingUsername = response.username;
+              this.idToken = token;
+              this.socialType = 'facebook';
+              this.showUserLinkModal = true;
+              this.cdr.detectChanges();
+            },
+          });
+        }
+      }
+    })
   }
 }
