@@ -73,6 +73,6 @@ export class TokenInterceptor implements HttpInterceptor {
   }
 
   private isExcludedUrl(url: string): boolean {
-    return url.includes('/login') || url.includes('/refresh-token') || url.includes('/logout');
+    return url.includes('/login') || url.includes('/register') || url.includes('/refresh-token') || url.includes('/logout') || url.includes('/weather') || url.includes('/auth/google');
   }
 }

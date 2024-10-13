@@ -7,6 +7,8 @@ import { ForgotPasswordComponent } from './components/forgot-password/forgot-pas
 import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
 import { ForgotUsernameComponent } from './components/forgot-username/forgot-username.component';
 import { VerifyEmailComponent } from './components/verify-email/verify-email.component';
+import { CookiePolicyComponent } from './components/cookie-policy/cookie-policy.component';
+import { PrivacyPolicyComponent } from './components/privacy-policy/privacy-policy.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -17,6 +19,8 @@ const routes: Routes = [
   { path: 'forgot-username', component: ForgotUsernameComponent },
   { path: 'reset-password/:token', component: ResetPasswordComponent },
   { path: 'verify-email/:token', component: VerifyEmailComponent },
+  { path: 'cookie-policy', component: CookiePolicyComponent },
+  { path: 'privacy-policy', component: PrivacyPolicyComponent },
 ];
 
 @NgModule({

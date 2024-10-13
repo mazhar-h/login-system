@@ -16,6 +16,11 @@ import { ResetPasswordComponent } from './components/reset-password/reset-passwo
 import { ForgotUsernameComponent } from './components/forgot-username/forgot-username.component';
 import { VerifyEmailComponent } from './components/verify-email/verify-email.component';
 import { WeatherService } from './services/weather.service';
+import { UsernameModalComponent } from './components/username-modal/username-modal.component';
+import { UserLinkModalComponent } from './components/user-link-modal/user-link-modal.component';
+import { CookiePolicyComponent } from './components/cookie-policy/cookie-policy.component';
+import { PrivacyPolicyComponent } from './components/privacy-policy/privacy-policy.component';
+import { FooterComponent } from './components/footer/footer.component';
 
 @NgModule({ declarations: [
         AppComponent,
@@ -25,7 +30,12 @@ import { WeatherService } from './services/weather.service';
         ForgotPasswordComponent,
         ForgotUsernameComponent,
         ResetPasswordComponent,
-        VerifyEmailComponent
+        VerifyEmailComponent,
+        UsernameModalComponent,
+        UserLinkModalComponent,
+        CookiePolicyComponent,
+        PrivacyPolicyComponent,
+        FooterComponent
     ],
     bootstrap: [AppComponent], 
     imports: [

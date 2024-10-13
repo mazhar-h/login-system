@@ -1,0 +1,25 @@
+.footer {
+    display: flex; /* Use flexbox to arrange items */
+    justify-content: center; /* Center items horizontally */
+    align-items: center; /* Center items vertically */
+    background-color: #f8f8f8; /* Background color */
+    padding: 10px; /* Padding for spacing */
+    height: 50px; /* Fixed height for the footer */
+    margin-top: auto; /* Ensure it stays at the bottom of the container */
+  }
+  
+  .footer-content {
+    display: flex; /* Use flexbox for the content */
+    align-items: center; /* Center items vertically */
+  }
+  
+  .footer-content a {
+    text-decoration: none; /* Remove underline from links */
+    color: #007bff; /* Link color */
+    margin: 0 10px; /* Spacing between links */
+  }
+  
+  .footer-content span {
+    margin: 0 5px; /* Spacing around the separator */
+  }
+  

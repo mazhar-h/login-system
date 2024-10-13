@@ -1,3 +1,15 @@
+<app-username-modal
+  [usernameCreatedError]="usernameCreatedError"
+  (usernameCreated)="handleUsernameCreated($event)"
+  *ngIf="showUsernameModal"
+></app-username-modal>
+<app-user-link-modal
+  [showModal]="showUserLinkModal"
+  [username]="existingUsername"
+  [idToken]="idToken"
+  (modalClosed)="onModalClosed()"
+></app-user-link-modal>
+
 <!-- login.component.html -->
 
 <div class="login-container">
@@ -70,6 +82,8 @@
       </button>
     </div>
   </form>
+
+  <div id="buttonDiv"></div>
 
   <!-- Links -->
   <div class="links">

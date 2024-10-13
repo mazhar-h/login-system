@@ -1,0 +1,22 @@
+<div *ngIf="showModal" class="modal-container">
+    <div class="modal-content">
+      <h2>Link your account</h2>
+      <p>Username: <strong>{{ username }}</strong></p>
+      <p>This account already exists. To link it with your Google account, please enter your password.</p>
+  
+      <form (ngSubmit)="linkAccount()">
+        <div class="form-group">
+          <label for="password">Password:</label>
+          <input type="password" id="password" [(ngModel)]="password" name="password" class="form-control" required />
+        </div>
+  
+        <div class="modal-buttons">
+          <button type="submit" class="btn btn-primary">Link Account</button>
+          <button type="button" class="btn btn-secondary" (click)="closeModal()">Cancel</button>
+        </div>
+      </form>
+  
+      <p *ngIf="errorMessage" class="error-message">{{ errorMessage }}</p>
+    </div>
+  </div>
+  

@@ -2,15 +2,32 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { Observable } from 'rxjs';
+import { environment } from '../environments/enivornment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  private baseUrl = 'https://mazharhossain.com/api/v1';
+  private baseUrl = environment.apiUrl;
 
   constructor(private http: HttpClient, private jwtHelper: JwtHelperService) {}
 
+  loginWithGoogle(googleToken: string): Observable<any> {
+    return this.http.post(`${this.baseUrl}/auth/google`, googleToken, { withCredentials: true })
+  }
+
+  registerWithGoogle(idToken: string, googleAuthRequest: { username: string }): Observable<any> {
+    return this.http.post(`${this.baseUrl}/auth/google/register`, googleAuthRequest , {  headers: { Authorization: 'Bearer ' + idToken }, withCredentials: true })
+  }
+
+  getExistingUser(idToken: string): Observable<any> {
+    return this.http.get(`${this.baseUrl}/auth/google/user`, { headers: { Authorization: 'Bearer ' + idToken } })
+  }
+
+  linkGoogleAccount(idToken: string, googleLinkRequest: {password: string}): Observable<any> {
+    return this.http.post(`${this.baseUrl}/auth/google/link`, googleLinkRequest, {  headers: { Authorization: 'Bearer ' + idToken }, withCredentials: true })
+  }
+  
   login(username: string, password: string): Observable<any> {
     return this.http.post(`${this.baseUrl}/login`, { username, password }, { withCredentials: true });
   }
