@@ -19,8 +19,8 @@ const routes: Routes = [
   { path: 'forgot-username', component: ForgotUsernameComponent },
   { path: 'reset-password/:token', component: ResetPasswordComponent },
   { path: 'verify-email/:token', component: VerifyEmailComponent },
-  { path: 'cookie-policy', component: CookiePolicyComponent },
-  { path: 'privacy-policy', component: PrivacyPolicyComponent },
+  { path: 'login-system/cookie-policy', component: CookiePolicyComponent },
+  { path: 'login-system/privacy-policy', component: PrivacyPolicyComponent },
 ];
 
 @NgModule({
