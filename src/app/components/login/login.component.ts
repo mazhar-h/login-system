@@ -40,16 +40,19 @@ export class LoginComponent implements OnInit {
 
     // @ts-ignore
     google.accounts.id.initialize({
-      client_id:
-        environment.googleOauthClientId,
+      client_id: environment.googleOauthClientId,
       callback: this.handleCredentialResponse.bind(this),
       use_fedcm_for_prompt: true,
     });
     // @ts-ignore
-    google.accounts.id.renderButton(document.getElementById('buttonDiv'), {
-      theme: 'outline',
-      size: 'large',
-    });
+    google.accounts.id.renderButton(
+      document.getElementById('gooogle-signin-btn'),
+      {
+        theme: 'outline',
+        size: 'large',
+        width: '300',
+      }
+    );
   }
 
   handleCredentialResponse(response: any) {
@@ -68,7 +71,6 @@ export class LoginComponent implements OnInit {
         if (err.error === 'User already exists') {
           this.authService.getGoogleExistingUser(this.idToken).subscribe({
             next: (resp) => {
-              console.log(resp.username);
               this.existingUsername = resp.username;
               this.idToken = response.credential;
               this.socialType = 'google';
@@ -167,21 +169,23 @@ export class LoginComponent implements OnInit {
 
   facebookLogin() {
     //@ts-ignore
-    FB.login((response) => {
-      console.log(response)
-      if (response.authResponse) {
-        const accessToken = response.authResponse.accessToken;
-        this.sendFacebookTokenToBackend(accessToken);
-      } else {
-        console.log('User cancelled login or did not fully authorize.');
-      }
-    }, {scope: 'email'});
+    FB.login(
+      (response: any) => {
+        if (response.authResponse) {
+          const accessToken = response.authResponse.accessToken;
+          this.sendFacebookTokenToBackend(accessToken);
+        } else {
+          console.log('User cancelled login or did not fully authorize.');
+        }
+      },
+      { scope: 'email' }
+    );
   }
-  
+
   sendFacebookTokenToBackend(token: string) {
     this.idToken = token;
     this.authService.loginWithFacebook(token).subscribe({
-      next: response => {
+      next: (response) => {
         if (!response.accessToken) {
           this.socialType = 'facebook';
           this.openUsernameModal();
@@ -190,11 +194,10 @@ export class LoginComponent implements OnInit {
           this.redirectDashboard();
         }
       },
-      error: err => {
+      error: (err) => {
         if (err.error === 'User already exists') {
           this.authService.getFacebookExistingUser(this.idToken).subscribe({
             next: (response) => {
-              console.log(response.username);
               this.existingUsername = response.username;
               this.idToken = token;
               this.socialType = 'facebook';
@@ -203,7 +206,7 @@ export class LoginComponent implements OnInit {
             },
           });
         }
-      }
-    })
+      },
+    });
   }
 }
