@@ -50,21 +50,6 @@ export class LoginComponent implements OnInit {
       theme: 'outline',
       size: 'large',
     });
-
-    // @ts-ignore
-    window.fbAsyncInit = function() {
-      // @ts-ignore
-      FB.init({
-        appId      : environment.facebookClientId,
-        cookie     : true,
-        xfbml      : true,
-        version    : 'v21.0'
-      });
-      
-      //@ts-ignore
-      FB.AppEvents.logPageView();   
-        
-    };
   }
 
   handleCredentialResponse(response: any) {

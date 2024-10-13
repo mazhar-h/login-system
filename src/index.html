@@ -8,6 +8,15 @@
   <link rel="icon" type="image/x-icon" href="favicon.ico">
   <script src="https://accounts.google.com/gsi/client" async defer></script>
   <script>
+      window.fbAsyncInit = function() {
+      FB.init({
+        appId      : '508990608788575',
+        cookie     : true,
+        xfbml      : true,
+        version    : 'v21.0'
+      });
+      FB.AppEvents.logPageView();   
+    };
     (function(d, s, id){
        var js, fjs = d.getElementsByTagName(s)[0];
        if (d.getElementById(id)) {return;}
