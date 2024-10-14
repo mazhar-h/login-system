@@ -1,0 +1,17 @@
+<div class="email-confirmation-container">
+  <div *ngIf="isLoading" class="loading-message">
+    <p>Confirming your email, please wait...</p>
+  </div>
+
+  <div *ngIf="!isLoading && isConfirmed">
+    <h2>Email Confirmation Successful</h2>
+    <p>Your email has been updated successfully.</p>
+    <button routerLink="/login" class="btn">Go to Login</button>
+  </div>
+
+  <div *ngIf="!isLoading && !isConfirmed">
+    <h2>Email Confirmation Failed</h2>
+    <p>Invalid or expired token. Please try again or contact support.</p>
+    <button routerLink="/" class="btn">Go to Home</button>
+  </div>
+</div>

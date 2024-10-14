@@ -6,10 +6,9 @@
       <p>{{ verificationStatus }}</p>
     </div>
   
-    <!-- If there is an error, show the error message and a button to resend the verification link -->
+    <!-- If there is an error, show the error message -->
     <div *ngIf="errorMessage">
       <p>{{ errorMessage }}</p>
-      <button (click)="resendVerificationEmail()" class="btn btn-primary">Resend Verification Link</button>
     </div>
   
     <!-- Success message after the verification -->

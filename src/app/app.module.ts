@@ -21,6 +21,8 @@ import { UserLinkModalComponent } from './components/user-link-modal/user-link-m
 import { CookiePolicyComponent } from './components/cookie-policy/cookie-policy.component';
 import { PrivacyPolicyComponent } from './components/privacy-policy/privacy-policy.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { SettingsComponent } from './components/settings/settings.component';
+import { EmailConfirmationComponent } from './components/email-confirmation/email-confirmation.component';
 
 @NgModule({ declarations: [
         AppComponent,
@@ -35,7 +37,9 @@ import { FooterComponent } from './components/footer/footer.component';
         UserLinkModalComponent,
         CookiePolicyComponent,
         PrivacyPolicyComponent,
-        FooterComponent
+        FooterComponent,
+        SettingsComponent,
+        EmailConfirmationComponent
     ],
     bootstrap: [AppComponent], 
     imports: [

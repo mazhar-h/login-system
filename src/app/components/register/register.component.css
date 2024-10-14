@@ -7,6 +7,14 @@
   background-color: #f9f9f9;
 }
 
+#password {
+  margin-bottom: 10px;
+}
+
+.password-match-error {
+  color: #dc3545;
+}
+
 h2 {
   text-align: center;
 }

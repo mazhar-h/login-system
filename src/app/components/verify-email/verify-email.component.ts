@@ -15,7 +15,6 @@ export class VerifyEmailComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private userService: UserService,
-    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -33,18 +32,6 @@ export class VerifyEmailComponent implements OnInit {
       error: (error: any) => {
         this.verificationStatus = 'Verification failed. Your email could not be verified.';
         this.errorMessage = error.error?.message || 'An error occurred during verification.';
-      }
-    });
-  }
-
-  // Method to resend verification email
-  resendVerificationEmail() {
-    this.userService.resendVerificationLinkWithToken(this.token).subscribe({
-      next: () => {
-        alert('A new verification link has been sent to your email.');
-      },
-      error: () => {
-        alert('Failed to resend verification link.');
       }
     });
   }

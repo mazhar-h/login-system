@@ -23,6 +23,10 @@ export class UserService {
     return this.http.get<any>(`${this.baseUrl}/users`);
   }
 
+  getUserEmail(): Observable<any> {
+    return this.http.get<any>(`${this.baseUrl}/users/email`);
+  }
+
   createUser(user: { username: string; email: string; role: string }): Observable<any> {
     return this.http.post<any>(`${this.baseUrl}/admin/users`, user, {responseType: 'text' as 'json'});
   }
@@ -31,8 +35,24 @@ export class UserService {
     return this.http.put<any>(`${this.baseUrl}/admin/users`, user, {responseType: 'text' as 'json'});
   }
 
+  confirmEmail(token: string): Observable<any> {
+    return this.http.post<any>(`${this.baseUrl}/users/confirm-email`, { token: token } , {responseType: 'text' as 'json'});
+  }
+
+  updateUserEmail(user: { email: string | null }): Observable<any> {
+    return this.http.put<any>(`${this.baseUrl}/users/update-email`, user, {responseType: 'text' as 'json'});
+  }
+
+  updateUserPassword(user: { currentPassword: string | null, newPassword: string | null }): Observable<any> {
+    return this.http.put<any>(`${this.baseUrl}/users/password`, user, {responseType: 'text' as 'json'});
+  }
+
   deleteUser(username: string): Observable<any> {
     return this.http.delete<any>(`${this.baseUrl}/admin/users/${username}`, this.getOptions());
+  }
+
+  deleteUser2(): Observable<any> {
+    return this.http.delete<any>(`${this.baseUrl}/users`, this.getOptions());
   }
 
   processForgotPassword(email: string): Observable<any> {
@@ -40,7 +60,7 @@ export class UserService {
   }
 
   processResetPassword(token: string, newPassword: string): Observable<any> {
-    return this.http.post<any>(`${this.baseUrl}/users/reset-password?token=${token}`, {newPassword}, {responseType: 'text' as 'json'});
+    return this.http.post<any>(`${this.baseUrl}/users/reset-password`, { token, newPassword }, {responseType: 'text' as 'json'});
   }
 
   processForgotUsername(email: string): Observable<any> {

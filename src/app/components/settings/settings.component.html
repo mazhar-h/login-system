@@ -1,0 +1,67 @@
+<div class="settings-container">
+  <h2>Settings</h2>
+
+  <!-- Update Email -->
+  <div class="setting-item">
+    <label for="email">Current email: {{ currentEmail }}</label>
+    <div *ngIf="initiatedUpdateEmail">
+      <label class="label-email-msg" for="email">Please check your new email to confirm your updated email.</label>
+    </div>
+    <input
+      type="email"
+      id="email"
+      [(ngModel)]="email"
+      placeholder="New email"
+    />
+    <button (click)="updateEmail()">Update Email</button>
+  </div>
+
+  <div *ngIf="changedPassword">
+    <label class="label-password-msg">Your password was changed!</label>
+  </div>
+
+  <div *ngIf="errorPassword">
+    <label class="label-password-msg">Error updating your password.</label>
+  </div>
+
+  <div *ngIf="passwordMatchError">
+    <label class="label-password-msg">Your passwords are not matching.</label>
+  </div>
+  <!-- Current Password -->
+  <div class="setting-item-pass">
+    <input
+      type="password"
+      id="currentPassword"
+      [(ngModel)]="currentPassword"
+      placeholder="Current password"
+    />
+  </div>
+
+  <!-- Update Password -->
+  <div class="setting-item-pass">
+    <input
+      type="password"
+      id="password"
+      [(ngModel)]="password"
+      placeholder="New password"
+    />
+  </div>
+
+  <!-- Re-type Password -->
+  <div class="setting-item-pass">
+    <input
+      type="password"
+      id="retypePassword"
+      [(ngModel)]="retypePassword"
+      placeholder="Re-type password"
+    />
+    <button (click)="updatePassword()">Update Password</button>
+  </div>
+
+  <!-- Delete Account -->
+  <div class="setting-item">
+    <button class="delete-account" (click)="deleteAccount()">
+      Delete Account
+    </button>
+  </div>
+</div>

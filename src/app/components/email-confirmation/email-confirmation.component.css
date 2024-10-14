@@ -1,0 +1,26 @@
+.email-confirmation-container {
+  text-align: center;
+  margin-top: 50px;
+}
+
+.loading-message {
+  color: #333;
+}
+
+h2 {
+  color: #3c6bec;
+}
+
+.btn {
+  padding: 10px 20px;
+  margin-top: 20px;
+  color: white;
+  background-color: #3c6bec;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background-color: #3c6bec;
+}

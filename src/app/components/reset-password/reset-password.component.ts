@@ -10,7 +10,9 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class ResetPasswordComponent implements OnInit {
   newPassword: string = '';
+  retypePassword: string = '';
   token: string | null = null;
+  passwordMatchError: boolean = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -23,7 +25,7 @@ export class ResetPasswordComponent implements OnInit {
   }
 
   onSubmit() {
-    if (this.token && this.newPassword) {
+    if (this.token && (this.newPassword === this.retypePassword)) {
       this.userService
         .processResetPassword(this.token, this.newPassword)
         .subscribe({
@@ -38,5 +40,8 @@ export class ResetPasswordComponent implements OnInit {
           },
         });
     }
+
+    if (this.newPassword !== this.retypePassword)
+      this.passwordMatchError = true;
   }
 }

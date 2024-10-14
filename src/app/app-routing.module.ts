@@ -9,6 +9,8 @@ import { ForgotUsernameComponent } from './components/forgot-username/forgot-use
 import { VerifyEmailComponent } from './components/verify-email/verify-email.component';
 import { CookiePolicyComponent } from './components/cookie-policy/cookie-policy.component';
 import { PrivacyPolicyComponent } from './components/privacy-policy/privacy-policy.component';
+import { SettingsComponent } from './components/settings/settings.component';
+import { EmailConfirmationComponent } from './components/email-confirmation/email-confirmation.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -21,6 +23,9 @@ const routes: Routes = [
   { path: 'verify-email/:token', component: VerifyEmailComponent },
   { path: 'cookie-policy', component: CookiePolicyComponent },
   { path: 'privacy-policy', component: PrivacyPolicyComponent },
+  { path: 'settings', component: SettingsComponent },
+  { path: 'confirm-email/:token', component: EmailConfirmationComponent },
+
 ];
 
 @NgModule({

@@ -4,6 +4,8 @@
   <!-- Display the message here -->
 
   <button (click)="logout()" class="btn btn-danger">Logout</button>
+  <button routerLink="/settings" class="btn btn-danger">Settings</button>
+
   <div class="weather-dashboard">
     <div *ngIf="weatherData">
       <h3>{{ weatherData.name }}</h3>

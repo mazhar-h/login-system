@@ -1,5 +1,11 @@
 import { Injectable } from '@angular/core';
-import { HttpInterceptor, HttpRequest, HttpHandler, HttpEvent, HttpErrorResponse } from '@angular/common/http';
+import {
+  HttpInterceptor,
+  HttpRequest,
+  HttpHandler,
+  HttpEvent,
+  HttpErrorResponse,
+} from '@angular/common/http';
 import { Observable, throwError, BehaviorSubject } from 'rxjs';
 import { catchError, filter, switchMap, take } from 'rxjs/operators';
 import { AuthService } from '../services/auth.service';
@@ -7,13 +13,16 @@ import { Router } from '@angular/router';
 
 @Injectable()
 export class TokenInterceptor implements HttpInterceptor {
-
   private isRefreshing = false;
-  private refreshTokenSubject: BehaviorSubject<string | null> = new BehaviorSubject<string | null>(null);
+  private refreshTokenSubject: BehaviorSubject<string | null> =
+    new BehaviorSubject<string | null>(null);
 
-  constructor(private authService: AuthService, private router: Router) { }
+  constructor(private authService: AuthService, private router: Router) {}
 
-  intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+  intercept(
+    req: HttpRequest<any>,
+    next: HttpHandler
+  ): Observable<HttpEvent<any>> {
     const token = this.authService.getToken();
 
     let authReq = req;
@@ -36,7 +45,7 @@ export class TokenInterceptor implements HttpInterceptor {
 
   private addTokenHeader(request: HttpRequest<any>, token: string) {
     return request.clone({
-      headers: request.headers.set('Authorization', `Bearer ${token}`)
+      headers: request.headers.set('Authorization', `Bearer ${token}`),
     });
   }
 
@@ -61,9 +70,9 @@ export class TokenInterceptor implements HttpInterceptor {
       );
     } else {
       return this.refreshTokenSubject.pipe(
-        filter(token => token != null),
+        filter((token) => token != null),
         take(1),
-        switchMap(token => next.handle(this.addTokenHeader(request, token!)))
+        switchMap((token) => next.handle(this.addTokenHeader(request, token!)))
       );
     }
   }
@@ -73,6 +82,14 @@ export class TokenInterceptor implements HttpInterceptor {
   }
 
   private isExcludedUrl(url: string): boolean {
-    return url.includes('/login') || url.includes('/register') || url.includes('/refresh-token') || url.includes('/logout') || url.includes('/weather') || url.includes('/auth/google');
+    return (
+      url.includes('/login') ||
+      url.includes('/register') ||
+      url.includes('/refresh-token') ||
+      url.includes('/logout') ||
+      url.includes('/weather') ||
+      url.includes('/auth/google') ||
+      url.includes('/confirm-email')
+    );
   }
 }

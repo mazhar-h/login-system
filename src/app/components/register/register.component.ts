@@ -8,10 +8,11 @@ import { Router } from '@angular/router'; // Import Router for navigation
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent {
+  passwordMatchError: boolean = false;
   
   constructor(
     private authService: AuthService,
-    private router: Router // Inject Router for navigation
+    private router: Router
   ) {}
 
   onSubmit(event: Event) {
@@ -20,6 +21,12 @@ export class RegisterComponent {
     const username = (target.elements.namedItem('username') as HTMLInputElement).value;
     const email = (target.elements.namedItem('email') as HTMLInputElement).value;
     const password = (target.elements.namedItem('password') as HTMLInputElement).value;
+    const retypePassword = (target.elements.namedItem('retypePassword') as HTMLInputElement).value;
+
+    if (password !== retypePassword) {
+      this.passwordMatchError = true;
+      return;
+    }
 
     // Call the AuthService to register the user
     this.authService.register({ username, email, password }).subscribe({
