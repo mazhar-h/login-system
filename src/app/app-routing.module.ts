@@ -11,6 +11,7 @@ import { CookiePolicyComponent } from './components/cookie-policy/cookie-policy.
 import { PrivacyPolicyComponent } from './components/privacy-policy/privacy-policy.component';
 import { SettingsComponent } from './components/settings/settings.component';
 import { EmailConfirmationComponent } from './components/email-confirmation/email-confirmation.component';
+import { DataDeletionPolicyComponent } from './components/data-deletion-policy/data-deletion-policy.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -23,7 +24,7 @@ const routes: Routes = [
   { path: 'verify-email/:token', component: VerifyEmailComponent },
   { path: 'cookie-policy', component: CookiePolicyComponent },
   { path: 'privacy-policy', component: PrivacyPolicyComponent },
-  { path: 'data-deletion-policy', component: PrivacyPolicyComponent },
+  { path: 'data-deletion-policy', component: DataDeletionPolicyComponent },
   { path: 'settings', component: SettingsComponent },
   { path: 'confirm-email/:token', component: EmailConfirmationComponent },
 
