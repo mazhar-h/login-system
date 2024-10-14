@@ -39,20 +39,25 @@ export class LoginComponent implements OnInit {
     this.redirectDashboard();
 
     // @ts-ignore
-    google.accounts.id.initialize({
-      client_id: environment.googleOauthClientId,
-      callback: this.handleCredentialResponse.bind(this),
-      use_fedcm_for_prompt: true,
-    });
-    // @ts-ignore
-    google.accounts.id.renderButton(
-      document.getElementById('gooogle-signin-btn'),
-      {
-        theme: 'outline',
-        size: 'large',
-        width: '300',
-      }
-    );
+    if (typeof google !== 'undefined') {
+      // @ts-ignore
+      google.accounts.id.initialize({
+        client_id: environment.googleOauthClientId,
+        callback: this.handleCredentialResponse.bind(this),
+        use_fedcm_for_prompt: true,
+      });
+      // @ts-ignore
+      google.accounts.id.renderButton(
+        document.getElementById('gooogle-signin-btn'),
+        {
+          theme: 'outline',
+          size: 'large',
+          width: '300',
+        }
+      );
+    } else {
+      console.error('Google API is not available.');
+    }
   }
 
   handleCredentialResponse(response: any) {
