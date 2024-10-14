@@ -23,6 +23,7 @@ const routes: Routes = [
   { path: 'verify-email/:token', component: VerifyEmailComponent },
   { path: 'cookie-policy', component: CookiePolicyComponent },
   { path: 'privacy-policy', component: PrivacyPolicyComponent },
+  { path: 'data-deletion-policy', component: PrivacyPolicyComponent },
   { path: 'settings', component: SettingsComponent },
   { path: 'confirm-email/:token', component: EmailConfirmationComponent },
 

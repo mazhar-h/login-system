@@ -24,6 +24,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { SettingsComponent } from './components/settings/settings.component';
 import { EmailConfirmationComponent } from './components/email-confirmation/email-confirmation.component';
 import { DeleteAccountModalComponent } from './components/delete-account-modal/delete-account-modal.component';
+import { DataDeletionPolicyComponent } from './components/data-deletion-policy/data-deletion-policy.component';
 
 @NgModule({ declarations: [
         AppComponent,
@@ -41,7 +42,8 @@ import { DeleteAccountModalComponent } from './components/delete-account-modal/d
         FooterComponent,
         SettingsComponent,
         EmailConfirmationComponent,
-        DeleteAccountModalComponent
+        DeleteAccountModalComponent,
+        DataDeletionPolicyComponent
     ],
     bootstrap: [AppComponent], 
     imports: [
