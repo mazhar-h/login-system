@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { UserService } from 'src/app/services/user.service';
+import { DeleteAccountModalComponent } from '../delete-account-modal/delete-account-modal.component';
 
 @Component({
   selector: 'app-settings',
@@ -16,6 +17,8 @@ export class SettingsComponent implements OnInit {
   changedPassword: boolean = false;
   errorPassword: boolean = false;
   passwordMatchError: boolean = false;
+  
+  @ViewChild(DeleteAccountModalComponent) deleteAccountModal!: DeleteAccountModalComponent;
 
   constructor(private userService: UserService) {}
   ngOnInit(): void {
@@ -67,9 +70,16 @@ export class SettingsComponent implements OnInit {
     }
   }
 
-  deleteAccount() {
+  openDeleteModal() {
+    this.deleteAccountModal.openModal();
+  }
+
+  handleDelete() {
     this.userService.deleteUser2().subscribe((response) => {
       alert('Account deleted successfully.');
     });
+  }
+
+  handleCancel() {
   }
 }

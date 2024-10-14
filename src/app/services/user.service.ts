@@ -15,6 +15,10 @@ export class UserService {
     return this.http.get<string>(`${this.baseUrl}/hello`, this.getOptions());
   }
 
+  register(registerData: { username: string; email: string; password: string }): Observable<any> {
+    return this.http.post(`${this.baseUrl}/users/register`, registerData, { responseType: 'text' });
+  }
+
   getUsers(): Observable<any[]> {
     return this.http.get<any[]>(`${this.baseUrl}/admin/users`);
   }
@@ -69,10 +73,6 @@ export class UserService {
 
   resendVerificationLink(username: string): Observable<any> {
     return this.http.post(`${this.baseUrl}/users/resend-verification`, { username }, {responseType: 'text' as 'json'});
-  }
-
-  resendVerificationLinkWithToken(token: string): Observable<any> {
-    return this.http.post(`${this.baseUrl}/users/resend-verification-with-token`, { token }, {responseType: 'text' as 'json'});
   }
 
   verifyEmail(token: string): Observable<any[]> {

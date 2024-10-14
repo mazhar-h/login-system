@@ -48,10 +48,6 @@ export class AuthService {
     return this.http.post(`${this.baseUrl}/login`, { username, password }, { withCredentials: true });
   }
 
-  register(registerData: { username: string; email: string; password: string }): Observable<any> {
-    return this.http.post(`${this.baseUrl}/register`, registerData, { responseType: 'text' });
-  }
-
   refreshToken(): Observable<any> {
     return this.http.post(`${this.baseUrl}/refresh-token`, {}, { withCredentials: true });
   }

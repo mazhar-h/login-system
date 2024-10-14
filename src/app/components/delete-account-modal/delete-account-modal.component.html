@@ -1,0 +1,14 @@
+<div class="modal-backdrop" *ngIf="showModal">
+  <div class="modal-content">
+    <h2>Delete Account</h2>
+    <p>
+      Are you sure you want to delete your account? This action cannot be
+      undone.
+    </p>
+
+    <div class="modal-buttons">
+      <button class="btn btn-danger" (click)="onConfirm()">Yes</button>
+      <button class="btn btn-secondary" (click)="onCancel()">Cancel</button>
+    </div>
+  </div>
+</div>

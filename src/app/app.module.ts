@@ -23,6 +23,7 @@ import { PrivacyPolicyComponent } from './components/privacy-policy/privacy-poli
 import { FooterComponent } from './components/footer/footer.component';
 import { SettingsComponent } from './components/settings/settings.component';
 import { EmailConfirmationComponent } from './components/email-confirmation/email-confirmation.component';
+import { DeleteAccountModalComponent } from './components/delete-account-modal/delete-account-modal.component';
 
 @NgModule({ declarations: [
         AppComponent,
@@ -39,7 +40,8 @@ import { EmailConfirmationComponent } from './components/email-confirmation/emai
         PrivacyPolicyComponent,
         FooterComponent,
         SettingsComponent,
-        EmailConfirmationComponent
+        EmailConfirmationComponent,
+        DeleteAccountModalComponent
     ],
     bootstrap: [AppComponent], 
     imports: [

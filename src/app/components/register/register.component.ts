@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { AuthService } from '../../services/auth.service'; // Adjust the path as necessary
 import { Router } from '@angular/router'; // Import Router for navigation
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-register',
@@ -11,12 +12,12 @@ export class RegisterComponent {
   passwordMatchError: boolean = false;
   
   constructor(
-    private authService: AuthService,
+    private userService: UserService,
     private router: Router
   ) {}
 
   onSubmit(event: Event) {
-    event.preventDefault(); // Prevent the default form submission
+    event.preventDefault();
     const target = event.target as HTMLFormElement;
     const username = (target.elements.namedItem('username') as HTMLInputElement).value;
     const email = (target.elements.namedItem('email') as HTMLInputElement).value;
@@ -28,15 +29,11 @@ export class RegisterComponent {
       return;
     }
 
-    // Call the AuthService to register the user
-    this.authService.register({ username, email, password }).subscribe({
+    this.userService.register({ username, email, password }).subscribe({
       next: (response: any) => {
-        // Handle successful registration
-        console.log('Registration successful:', response);
-        this.router.navigate(['/login']); // Navigate to login page
+        this.router.navigate(['/login']);
       },
       error: (error: any) => {
-        // Handle error
         console.error('Registration failed:', error);
       }
     });
