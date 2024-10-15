@@ -31,7 +31,7 @@ export class RegisterComponent {
 
     this.userService.register({ username, email, password }).subscribe({
       next: (response: any) => {
-        this.router.navigate(['/login']);
+        this.router.navigate(['/']);
       },
       error: (error: any) => {
         console.error('Registration failed:', error);

@@ -32,7 +32,7 @@ export class ResetPasswordComponent implements OnInit {
           next: (response) => {
             console.log('Password reset successfully:', response);
             alert('Password has been reset successfully.');
-            this.router.navigate(['/login']);
+            this.router.navigate(['/']);
           },
           error: (error) => {
             console.error('Error resetting password:', error);

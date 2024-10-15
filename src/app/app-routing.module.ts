@@ -14,7 +14,7 @@ import { EmailConfirmationComponent } from './components/email-confirmation/emai
 import { DataDeletionPolicyComponent } from './components/data-deletion-policy/data-deletion-policy.component';
 
 const routes: Routes = [
-  { path: 'login', component: LoginComponent },
+  { path: '', component: LoginComponent },
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
   { path: 'register', component: RegisterComponent },
   { path: 'dashboard', component: DashboardComponent },
