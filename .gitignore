@@ -1,12 +1,46 @@
 # See http://help.github.com/ignore-files/ for more about ignoring files.
 
-# loginsystem_fe (Angular)
-loginsystem_fe/node_modules
-loginsystem_fe/dist
-
 # loginsystem_be (Spring Boot)
 loginsystem_be/target
 loginsystem_be/.idea
+
+loginsystem_be/HELP.md
+loginsystem_be/target/
+loginsystem_be/!.mvn/wrapper/maven-wrapper.jar
+loginsystem_be/!**/src/main/**/target/
+loginsystem_be/!**/src/test/**/target/
+
+### STS ###
+loginsystem_be/.apt_generated
+loginsystem_be/.classpath
+loginsystem_be/.factorypath
+loginsystem_be/.project
+loginsystem_be/.settings
+loginsystem_be/.springBeans
+loginsystem_be/.sts4-cache
+
+### IntelliJ IDEA ###
+loginsystem_be/.idea
+loginsystem_be/*.iws
+loginsystem_be/*.iml
+loginsystem_be/*.ipr
+
+### NetBeans ###
+loginsystem_be/nbproject/private/
+loginsystem_be/nbbuild/
+loginsystem_be/dist/
+loginsystem_be/nbdist/
+loginsystem_be/.nb-gradle/
+loginsystem_be/build/
+loginsystem_be/!**/src/main/**/build/
+loginsystem_be/!**/src/test/**/build/
+
+### VS Code ###
+loginsystem_be/.vscode/
+
+# loginsystem_fe (Angular)
+loginsystem_fe/node_modules
+loginsystem_fe/dist
 
 # Compiled output
 loginsystem_fe/dist
