@@ -1,42 +1,50 @@
 # See http://help.github.com/ignore-files/ for more about ignoring files.
 
+# loginsystem_fe (Angular)
+loginsystem_fe/node_modules
+loginsystem_fe/dist
+
+# loginsystem_be (Spring Boot)
+loginsystem_be/target
+loginsystem_be/.idea
+
 # Compiled output
-/dist
-/tmp
-/out-tsc
-/bazel-out
+loginsystem_fe/dist
+loginsystem_fe/tmp
+loginsystem_fe/out-tsc
+loginsystem_fe/bazel-out
 
 # Node
-/node_modules
-npm-debug.log
-yarn-error.log
+loginsystem_fe/node_modules
+loginsystem_fe/npm-debug.log
+loginsystem_fe/yarn-error.log
 
 # IDEs and editors
-.idea/
-.project
-.classpath
-.c9/
-*.launch
-.settings/
-*.sublime-workspace
+loginsystem_fe/.idea/
+loginsystem_fe/.project
+loginsystem_fe/.classpath
+loginsystem_fe/.c9/
+loginsystem_fe/*.launch
+loginsystem_fe/.settings/
+loginsystem_fe/*.sublime-workspace
 
 # Visual Studio Code
-.vscode/*
-!.vscode/settings.json
-!.vscode/tasks.json
-!.vscode/launch.json
-!.vscode/extensions.json
-.history/*
+loginsystem_fe/.vscode/*
+loginsystem_fe/!.vscode/settings.json
+loginsystem_fe/!.vscode/tasks.json
+loginsystem_fe/!.vscode/launch.json
+loginsystem_fe/!.vscode/extensions.json
+loginsystem_fe/.history/*
 
 # Miscellaneous
-/.angular/cache
-.sass-cache/
-/connect.lock
-/coverage
-/libpeerconnection.log
-testem.log
-/typings
+loginsystem_fe/.angular/cache
+loginsystem_fe/.sass-cache/
+loginsystem_fe/connect.lock
+loginsystem_fe/coverage
+loginsystem_fe/libpeerconnection.log
+loginsystem_fe/testem.log
+loginsystem_fe/typings
 
 # System files
-.DS_Store
-Thumbs.db
+loginsystem_fe/.DS_Store
+loginsystem_fe/Thumbs.db
