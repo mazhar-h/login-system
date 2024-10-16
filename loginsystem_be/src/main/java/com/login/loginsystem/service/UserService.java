@@ -13,6 +13,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.management.relation.RoleNotFoundException;
+import javax.swing.text.html.Option;
 import java.time.LocalDateTime;
 import java.util.Collections;
 import java.util.List;
@@ -199,7 +200,7 @@ public class UserService {
     public boolean deleteUser(HttpServletRequest request) {
         String token = jwtUtil.extractJwtFromRequest(request);
         String username = jwtUtil.extractUsername(token);
-        if (username.toLowerCase().equals("bob"))
+        if (username.equalsIgnoreCase("bob"))
             return false;
         if (userRepository.existsByUsername(username)) {
             userRepository.deleteByUsername(username);
@@ -247,13 +248,17 @@ public class UserService {
             return false;
         }
 
-        String token = UUID.randomUUID().toString();
-        PasswordResetToken passwordResetToken = new PasswordResetToken();
-        passwordResetToken.setToken(token);
-        passwordResetToken.setUser(user);
-        passwordResetToken.setExpiryDate(LocalDateTime.now().plusHours(24));  // Token valid for 24 hours
+        Optional<PasswordResetToken> passwordResetToken = passwordResetTokenRepository.findByUserId(user.getId());
 
-        passwordResetTokenRepository.save(passwordResetToken);
+        passwordResetToken.ifPresent(passwordResetTokenRepository::delete);
+
+        String token = UUID.randomUUID().toString();
+        PasswordResetToken passwordResetToken2 = new PasswordResetToken();
+        passwordResetToken2.setToken(token);
+        passwordResetToken2.setUser(user);
+        passwordResetToken2.setExpiryDate(LocalDateTime.now().plusHours(24));  // Token valid for 24 hours
+
+        passwordResetTokenRepository.save(passwordResetToken2);
 
         String resetLink = DOMAIN + PATH_RESET_PASSWORD + token;
         emailService.sendEmail(user.getEmail(), "Password Reset", "Click the link to reset your password: " + resetLink);
