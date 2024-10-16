@@ -298,22 +298,19 @@ public class UserService {
     }
 
     public boolean initiateEmailUpdate(String username, String newEmail) {
-        System.out.println(username);
         User user = userRepository.findByUsername(username);
 
-        // Check if email is already in use
-        if (userRepository.existsByEmail(newEmail)) {
+        if (userRepository.existsByEmail(newEmail))
             return false;
-        }
 
-        System.out.println(user.getUsername());
+        Optional<EmailToken> emailToken = emailTokenRepository.findByUserId(user.getId());
 
-        // Generate a confirmation token
+        emailToken.ifPresent(emailTokenRepository::delete);
+
         String token = UUID.randomUUID().toString();
-        EmailToken emailToken = new EmailToken(user, token, newEmail);
-        emailTokenRepository.save(emailToken);
+        EmailToken emailToken2 = new EmailToken(user, token, newEmail);
+        emailTokenRepository.save(emailToken2);
 
-        // Send confirmation email
         String confirmationUrl = DOMAIN + "/confirm-email/" + token;
         emailService.sendEmail(newEmail, "Confirm your email",
                 "Please click the link to confirm your new email: " + confirmationUrl);
