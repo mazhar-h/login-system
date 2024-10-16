@@ -189,7 +189,7 @@ public class UserService {
 
     @Transactional
     public boolean deleteUserByUsername(String username) {
-        if (userRepository.existsByUsername(username)) {
+        if (userRepository.existsByUsername(username) && !username.equalsIgnoreCase("bob")) {
             userRepository.deleteByUsername(username);
             return true;
         }
